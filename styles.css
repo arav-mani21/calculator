@@ -1,0 +1,34 @@
+#container{
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    width: 250px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button{
+    
+}
+
+.display{
+    width: 100%;
+    text-align: right;
+}
+
+.single, .space{
+    box-sizing: border-box;
+    width: 25%;
+}
+
+.double{
+    box-sizing: border-box;
+    width: 50%;
+}
+
+.space{
+    box-sizing: border-box;
+    visibility: hidden;
+}
