@@ -18,27 +18,34 @@ function loadCalculator(){
         else{
             buttonItem.classList.toggle('single')
         }
-        buttonItem.addEventListener('click',display(char))
+        buttonItem.setAttribute('onclick',`display('${char}')`)
         containerDiv.appendChild(buttonItem)
     }
 }
 
 function display(c){
     const calcDisplay = document.querySelector(".display")
-    let displayText = calcDisplay.textContent
+    if(c == 'C'){
+        calcDisplay.value = ""
+        return
+    }
+    let displayText = calcDisplay.value
     let operations = ['+','-','*','/']
 
+    let isOperation = operations.includes(c)
     operations = operations.filter(char => displayText.includes(char))
 
-    if(operations.length != 0){
+    if(c == '=' || (operations.length != 0 && isOperation)){
         let indexOfOperand = displayText.indexOf(operations[0])
         const firstNum = +displayText.slice(0,indexOfOperand)
         const secondNum = +displayText.slice(indexOfOperand+1)
 
         let result = operate(operations[0],firstNum,secondNum)
-        calcDisplay.textContent = result
+        calcDisplay.value = result
     }
-    calcDisplay.textContent += c
+    
+    if(c != '=')
+        calcDisplay.value += c
 }
 
 function operate(operation,a,b){
